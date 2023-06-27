@@ -14,6 +14,7 @@ class Jogo(object):
         try:
             self.jogadores.append(nome)
             print("Jogador adicionado")
+            print(f"Seja bem vindo(a), {nome}")
         except:
             print("Erro ao adicionar jogador")
 
