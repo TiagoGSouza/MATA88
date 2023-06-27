@@ -11,16 +11,21 @@ class Jogo(object):
         self.roleta = Roleta()
 
     def adicionar_participante(self, nome):
-        if nome != None:
+        try:
             self.jogadores.append(nome)
             print("Jogador adicionado")
-        else:
+        except:
             print("Erro ao adicionar jogador")
 
     def adicionar_aposta(self, nome, cor, numero):
-        aposta = (nome, cor, numero)
-        self.apostas.append(aposta)
+        try:
+            aposta = (nome, cor, numero)
+            self.apostas.append(aposta)
+            print("Aposta adicionada")
+        except:
+            print('Aposta invalida')
 
+        
     def iniciar_jogo(self):
         print("Vamos comecar o jogo")
         cor_vencedora, numero_vencedor = self.roleta.sortear_par_vencedor()
