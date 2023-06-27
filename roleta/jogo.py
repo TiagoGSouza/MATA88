@@ -24,6 +24,6 @@ class Jogo(object):
                       if aposta[1] == cor_vencedora and aposta[2] == numero_vencedor]
         if len(vencedores) > 0:
             for vencedor in range(len(vencedores)):
-                print(f"{vencedor} - {vencedores[vencedor]}")
+                print(f"Vencedor: {vencedor+1} - {vencedores[vencedor][0]}")
         else:
             print("Ngm venceu")

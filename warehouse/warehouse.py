@@ -25,6 +25,7 @@ def main():
             {
                 Warehouse: "example.warehouse"
             },
+            host = '127.0.0.1',
             ns = True)
 
 if __name__=="__main__":
