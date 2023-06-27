@@ -42,7 +42,7 @@ class Jogo(object):
 def main():
     Pyro4.Daemon.serveSimple(
         {
-            Jogo: "example.jogo"
+            Jogo: "jogo.roleta"
         },
         host="127.0.0.1",
         ns=True)
