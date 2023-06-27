@@ -10,8 +10,6 @@ VERMELHO = 1
 PRETO = 2
 CORES = [VERMELHO, PRETO]
 
-#jogo = Jogo()
-
 jogo = Pyro4.Proxy('PYRONAME:jogo.roleta')
 jogo.reiniciar_jogo()
 
