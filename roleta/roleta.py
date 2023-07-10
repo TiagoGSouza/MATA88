@@ -3,7 +3,7 @@ import Pyro4
 
 VERMELHO = 1
 PRETO = 2
-CORES = [VERMELHO, PRETO]
+CORES = ["VERMELHA", "PRETA"]
 
 @Pyro4.expose
 @Pyro4.behavior(instance_mode="single")
