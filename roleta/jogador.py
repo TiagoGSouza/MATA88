@@ -16,7 +16,7 @@ class Jogador(object):
         print(resultado)
 
 if __name__ == "__main__":
-    jogo = Pyro4.Proxy('PYRONAME:jogo.roleta')
+    jogo = Pyro4.Proxy('PYRONAME:jogo')
     nome = str(input("Digite seu nome: "))
     jogador = Jogador(nome)
     jogador.entrar_jogo(jogo)

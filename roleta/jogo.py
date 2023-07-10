@@ -1,6 +1,5 @@
 from __future__ import print_function
 import time
-from roleta import Roleta
 import Pyro4
 
 @Pyro4.expose
@@ -9,7 +8,6 @@ class Jogo(object):
     def __init__(self, daemon):
         self.jogadores = []
         self.apostas = []
-        self.roleta = Roleta()
         self.jogo_iniciado = False
         self.cor_vencedora = -1
         self.numero_vencedor = -1
@@ -19,6 +17,10 @@ class Jogo(object):
 
     def define_quantidade_jogadores(self, qtd_jogadores):
         self.qt_jogadores = qtd_jogadores
+
+    def define_par_vencedor(self, cor, numero):
+        self.cor_vencedora = cor
+        self.numero_vencedor = numero
 
     def adicionar_participante(self, nome):
         try:
@@ -37,11 +39,6 @@ class Jogo(object):
             print('Aposta invalida')
 
     def iniciar_jogo(self):
-        if not (self.jogo_iniciado):
-            self.cor_vencedora, self.numero_vencedor = self.roleta.sortear_par_vencedor()
-            self.jogo_iniciado = True
-            print(f"Cor: {self.cor_vencedora}")
-            print(f"Numero: {self.numero_vencedor}")
         i = 0
         while len(self.apostas) < self.qt_jogadores:
             if i == 0:
@@ -55,7 +52,7 @@ class Jogo(object):
                       if aposta[1] == self.cor_vencedora and aposta[2] == self.numero_vencedor]
         if len(vencedores) > 0:
             for vencedor in range(len(vencedores)):
-                s = (f"Vencedor: {vencedor+1} - {vencedores[vencedor][0]}")
+                s = (f"Vencedor: {vencedor+1} - {vencedores[vencedor][0]} - Aposta: cor - {vencedores[vencedor][1]} e numero - {vencedores[vencedor][2]}")
                 self.jogo_status = False
                 return s
         else:
@@ -77,6 +74,6 @@ if __name__=="__main__":
     jogo_server = Jogo(daemon)
     uri = daemon.register(jogo_server, objectId='Jogo')
     ns = Pyro4.locateNS()
-    ns.register("jogo.roleta", uri)
+    ns.register("jogo", uri)
     print("Servidor do jogo iniciado")
     daemon.requestLoop()
