@@ -70,7 +70,8 @@ class Jogo(object):
             print("Nao foi possivel encerrar o jogo")
     
 if __name__=="__main__":
-    daemon = Pyro4.Daemon(host="127.0.0.1")
+    daemon = Pyro4.Daemon()
+#    daemon = Pyro4.Daemon(host="127.0.0.1")
     jogo_server = Jogo(daemon)
     uri = daemon.register(jogo_server, objectId='Jogo')
     ns = Pyro4.locateNS()

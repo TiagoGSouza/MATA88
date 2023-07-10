@@ -23,7 +23,8 @@ class Roleta(object):
             print("Nao foi possivel encerrar a roleta")
     
 if __name__=="__main__":
-    daemon = Pyro4.Daemon(host="127.0.0.1")
+    daemon = Pyro4.Daemon()
+#    daemon = Pyro4.Daemon(host="127.0.0.1")
     roleta_server = Roleta(daemon)
     uri = daemon.register(roleta_server, objectId='Roleta')
     ns = Pyro4.locateNS()
