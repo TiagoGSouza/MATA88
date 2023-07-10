@@ -8,7 +8,6 @@ class Jogo(object):
     def __init__(self, daemon):
         self.jogadores = []
         self.apostas = []
-        self.jogo_iniciado = False
         self.cor_vencedora = -1
         self.numero_vencedor = -1
         self.qt_jogadores = 0
