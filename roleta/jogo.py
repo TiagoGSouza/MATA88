@@ -50,10 +50,11 @@ class Jogo(object):
         vencedores = [aposta for aposta in self.apostas
                       if aposta[1] == self.cor_vencedora and aposta[2] == self.numero_vencedor]
         if len(vencedores) > 0:
+            s = []
             for vencedor in range(len(vencedores)):
-                s = (f"Vencedor: {vencedor+1} - {vencedores[vencedor][0]} - Aposta: cor - {vencedores[vencedor][1]} e numero - {vencedores[vencedor][2]}")
+                s.append(f"Vencedor: {vencedor+1} - {vencedores[vencedor][0]} - Aposta: cor - {vencedores[vencedor][1]} e numero - {vencedores[vencedor][2]}")
                 self.jogo_status = False
-                return s
+            return s
         else:
             self.jogo_status = False
             return "Ninguem venceu"
@@ -69,7 +70,7 @@ class Jogo(object):
             print("Nao foi possivel encerrar o jogo")
     
 if __name__=="__main__":
-    daemon = Pyro4.Daemon()
+    daemon = Pyro4.Daemon(host="127.0.0.1")
     jogo_server = Jogo(daemon)
     uri = daemon.register(jogo_server, objectId='Jogo')
     ns = Pyro4.locateNS()
