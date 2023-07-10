@@ -1,8 +1,6 @@
 import random
 import Pyro4
 
-VERMELHO = 1
-PRETO = 2
 CORES = ["VERMELHA", "PRETA"]
 
 @Pyro4.expose
